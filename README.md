@@ -1,0 +1,2 @@
+# Raspberry-Pi-Pico-BadUSB-
+I DO NOT CONDONE MALICIOUS USE OF THIS REPO!!!
